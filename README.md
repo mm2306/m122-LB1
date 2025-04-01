@@ -1,4 +1,4 @@
-# m122-LB1
+m122-LB1
 Google Scraper
 
 Kurzfassung
@@ -11,20 +11,14 @@ In diesem README werden wir einen Google-Suchergebnis-Scraper von Grund auf mit 
 
 Ziel ist dann diese Daten auf einer PostgreSQL Datenbank abzuspeichern.
 
-1 Nötige Hilfsmittel
-Um dieses Programm zu machen benötigt man über eine Internetverbindung, einem Python Compiler und einem funktionstüchtigen Laptop.
+1 Nötige Hilfsmittel Um dieses Programm zu machen benötigt man über eine Internetverbindung, einem Python Compiler und einem funktionstüchtigen Laptop.
 
 2 Vorgehen
 
-2.1 Ordner und File erstellen
-Als erstes erstellt man einen Ordner um die Python-Scripts darin zu speichern. Danach haben wir Source-Code der vorgegebenen Webseite entnommen.
-https://www.scrapingdog.com/blog/scrape-google-search-results/
-Danach mussten wir anhand des folgendem Befehl die Library herunterladen: 
--	pip install beautifulsoup4 selenium pandas
+2.1 Ordner und File erstellen Als erstes erstellt man einen Ordner um die Python-Scripts darin zu speichern. Danach haben wir Source-Code der vorgegebenen Webseite entnommen. https://www.scrapingdog.com/blog/scrape-google-search-results/ Danach mussten wir anhand des folgendem Befehl die Library herunterladen:
 
-2.2 Chromedriver herunterladen
-Als nächsten Schritt lädt man den Chromedriver herunter. Dies findet man online unter diese Adresse:
-https://developer.chrome.com/docs/chromedriver/downloads?hl=de
+pip install beautifulsoup4 selenium pandas
+2.2 Chromedriver herunterladen Als nächsten Schritt lädt man den Chromedriver herunter. Dies findet man online unter diese Adresse: https://developer.chrome.com/docs/chromedriver/downloads?hl=de
 
 2.3 CSV-Datei gemäss Input erstellen
 
@@ -48,4 +42,4 @@ Nachdem man mit dem installierten Driver ein Fenster öffnet, kopiert man diese 
 
 3 Fazit
 
-Ich lernte in diesem Projekt, wie man mit einem Auftrag sich weitere Kenntnisse beibringen kann. Ich hatte nicht viel Erfahrung mit Python, jedoch habe ich im Rahmen des Auftrag schnell verstanden, wie der Code aufgebaut ist. Ich konnte meine Kenntnisse mit Datenbanken gebrauchen um die Ergebnisse in eine Datenbank einzufügen. Danach war es selbsterklärend, wie dies mit dem HTML funktioniert. Ich finde gut, wie ich mit dem Auftrag vorankam. Nächstes Mal würde ich jedoch den Code schöner schreiben. Dieser ist jetzt noch eher unleserlich.
+Ich lernte in diesem Projekt, wie man mit einem Auftrag sich weitere Kenntnisse beibringen kann. Ich hatte schon wenig Erfahrung mit Python und konnte wegen dem im Rahmen des Auftrag schnell verstehen, wie der Code funktioniert. Ich konnte meine Kenntnisse mit Datenbanken gebrauchen um die Ergebnisse in eine Datenbank einzufügen. Danach war es selbsterklärend, wie dies mit dem HTML funktioniert. Ich finde es passend, wie grosse Fortschritte ich machen konnte. Für das nächste Mal würde ich berücksichtigen, dass ich den Code schöner schreiben würde. Dieser ist jetzt noch eher unleserlich, aber funktionell.

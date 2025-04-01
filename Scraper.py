@@ -6,7 +6,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 # Set path to ChromeDriver (Replace this with the correct path)
-CHROMEDRIVER_PATH = "C:/Users/miche/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
+CHROMEDRIVER_PATH = "C:/Users/iamth/Downloads/chromedriver-win64-2/chromedriver-win64/chromedriver.exe"
 
 # Initialize WebDriver with Service
 service = Service(CHROMEDRIVER_PATH)
@@ -60,7 +60,7 @@ while choice == "yes":
 
     # add to postgres
     engine = create_engine("postgresql+pg8000://postgres:postgres@localhost:5432/postgres")
-    df.to_sql("search_results", engine, schema="google_scrapes", if_exists="append", index=False)
+    df.to_sql("search_results", engine, schema="google_scraper", if_exists="append", index=False)
 
     with open("google/html/"+ search +".html", "w", encoding="utf-16") as file:
         file.write(df.to_html(border=1))
