@@ -5,63 +5,70 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from sqlalchemy import create_engine
 
-search = input('Type search: ').replace(" ", "+")
 # Set path to ChromeDriver (Replace this with the correct path)
-CHROMEDRIVER_PATH = "C:/Users/miche/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"  # Change this to match your file location
+CHROMEDRIVER_PATH = "C:/Users/miche/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe"
 
 # Initialize WebDriver with Service
 service = Service(CHROMEDRIVER_PATH)
 options = webdriver.ChromeOptions()
 
-
 options.add_argument("--window-size=1920,1080")  # Set window size
 options.add_argument("--disable-blink-features=AutomationControlled")
 
-driver = webdriver.Chrome(service=service, options=options)
+choice = "yes"
+while choice == "yes":
+    search = input('Type search: ').replace(" ", "+")
 
-# Open Google Search URL
-search_url = "https://www.google.com/search?q=" + search +"&oq=" + search
+    driver = webdriver.Chrome(service=service, options=options)
 
-driver.get(search_url)
+    # Open Google Search URL
+    search_url = "https://www.google.com/search?q=" + search +"&oq=" + search
 
-# Wait for the page to load
-time.sleep(2)
+    driver.get(search_url)
 
-page_html = driver.page_source
+    # Wait for the page to load
+    time.sleep(2)
 
-soup = BeautifulSoup(page_html,'html.parser')
-obj={}
-l=[]
-allData = soup.find("div",{"class":"dURPMd"}).find_all("div",{"class":"Ww4FFb"})
-for i in range(0,len(allData)):
-    try:
-        obj["title"]=allData[i].find("h3").text
-    except:
-        obj["title"]=None
+    page_html = driver.page_source
 
-    try:
-        obj["link"]=allData[i].find("a").get('href')
-    except:
-        obj["link"]=None
-
-    try:
-        obj["description"]=allData[i].find("div",{"class":"VwiC3b"}).text
-    except:
-        obj["description"]=None
-
-    #add object to database
-    l.append(obj)
+    soup = BeautifulSoup(page_html,'html.parser')
     obj={}
+    l=[]
+    allData = soup.find("div",{"class":"dURPMd"}).find_all("div",{"class":"Ww4FFb"})
+    for i in range(0,len(allData)):
+        try:
+            obj["title"]=allData[i].find("h3").text
+        except:
+            obj["title"]=None
 
-df = pd.DataFrame(l)
-df.to_csv('google/' + search +'_google.csv', index=False, encoding='utf-8')
+        try:
+            obj["link"]=allData[i].find("a").get('href')
+        except:
+            obj["link"]=None
 
-# add to postgres
-engine = create_engine("postgresql+pg8000://postgres:postgres@localhost:5432/postgres")
-df.to_sql("search_results", engine, schema="google_scrapes", if_exists="append", index=False)
+        try:
+            obj["description"]=allData[i].find("div",{"class":"VwiC3b"}).text
+        except:
+            obj["description"]=None
 
-print("Data saved to PostgresSQL database in google_scrapes schema!")
+        #add object to database
+        l.append(obj)
+        obj={}
 
-driver.quit()
+    df = pd.DataFrame(l)
+    df.to_csv('google/csv/' + search +'_google.csv', index=False, encoding='utf-8')
 
+    # add to postgres
+    engine = create_engine("postgresql+pg8000://postgres:postgres@localhost:5432/postgres")
+    df.to_sql("search_results", engine, schema="google_scrapes", if_exists="append", index=False)
 
+    with open("google/html/"+ search +".html", "w", encoding="utf-8") as file:
+        file.write(df.to_html(border=1))
+
+    driver.quit()
+
+    print("Data saved to PostgresSQL database in google_scrapes schema!\n" + search)
+
+    choice = input("Do you want to continue (yes/no)")
+
+print("Bye!")
