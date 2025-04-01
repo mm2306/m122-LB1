@@ -38,6 +38,14 @@ docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgre
 
 Danach muss man mit pip install sqlalchemy ein DB-Toolkit herunterladen um ein engine zu erstellen, welcher auf die Prostgres-DB zugreifen kann. Danach kann man mit .to_sql die Objekte in einer Tabelle einfügen.
 
-2.5 Vorgegebener Code erklärt
+2.5 HTML Tabelle erstellen
+
+Dies geht genauso wie die CSV Datei. Jedoch öffne ich mit der with open funktion ein file. Ich nutzte das utf-16 als encoding. Man öffnet somit eine HTML-Datei und dort schreibt man das Dataframe mit der .to_html Funktion auf.
+
+2.6 Vorgegebener Code erklärt
 
 Nachdem man mit dem installierten Driver ein Fenster öffnet, kopiert man diese Seite in ein Object. Die h3-Tags werden als Titel gezählt, während die a-Tags als Link und p-Tags die Beschreibung sind. Diese Objekte werden in einem Array gespeichert. Dieser Array wird als Dataframe gespeichert, welcher man dann zu einem CSV/eeiner Tabelle umwandeln kann.
+
+3 Fazit
+
+Ich lernte in diesem Projekt, wie man mit einem Auftrag sich weitere Kenntnisse beibringen kann. Ich hatte nicht viel Erfahrung mit Python, jedoch habe ich im Rahmen des Auftrag schnell verstanden, wie der Code aufgebaut ist. Ich konnte meine Kenntnisse mit Datenbanken gebrauchen um die Ergebnisse in eine Datenbank einzufügen. Danach war es selbsterklärend, wie dies mit dem HTML funktioniert. Ich finde gut, wie ich mit dem Auftrag vorankam. Nächstes Mal würde ich jedoch den Code schöner schreiben. Dieser ist jetzt noch eher unleserlich.

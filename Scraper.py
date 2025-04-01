@@ -62,7 +62,7 @@ while choice == "yes":
     engine = create_engine("postgresql+pg8000://postgres:postgres@localhost:5432/postgres")
     df.to_sql("search_results", engine, schema="google_scrapes", if_exists="append", index=False)
 
-    with open("google/html/"+ search +".html", "w", encoding="utf-8") as file:
+    with open("google/html/"+ search +".html", "w", encoding="utf-16") as file:
         file.write(df.to_html(border=1))
 
     driver.quit()
